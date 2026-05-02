@@ -1,0 +1,32 @@
+import numpy as np
+
+# Assuming input as CSV file converted into array (example placeholder)
+a = np.array([
+    [1, 85, 90, 78],
+    [2, 88, 76, 95],
+    [3, 70, 80, 85]
+])
+
+# Print all student Roll Nos
+print("All Student Roll Nos:", f"{[i for i in a[:,0]]}")
+
+# Print subject 1 marks
+print("Subject 1 marks:", a[:,1])
+
+# Print minimum marks of Subject 2
+print("Minimum marks of Subject 2:", np.min(a[:,2]))
+
+# Print all subject marks (excluding roll numbers)
+print("All subject marks:", a[:,1:])
+
+# Total marks of each student
+total_marks = np.sum(a[:,1:], axis=1)
+print("Total Marks:", total_marks)
+
+# Average marks of each student
+avg_marks_student = np.mean(a[:,1:], axis=1)
+print("Average marks of each student:", avg_marks_student)
+
+# Average marks of each subject
+avg_marks_subject = np.mean(a[:,1:], axis=0)
+print("Average marks of each subject:", avg_marks_subject)
