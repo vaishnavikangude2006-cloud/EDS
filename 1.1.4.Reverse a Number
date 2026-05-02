@@ -1,0 +1,4 @@
+n = str(input())
+new = n[::-1]
+new = int(new)
+print(new)
