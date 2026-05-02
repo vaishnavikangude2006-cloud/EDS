@@ -1,0 +1,10 @@
+data=list(map(int,input().split()))
+element=int(input())
+flag=0
+for i in range(len(data)):
+    if(data[i]==element):
+        print(i)
+        flag=1
+        break
+if(flag==0):
+    print("Not found")
