@@ -1,0 +1,29 @@
+import pandas as pd
+import numpy as np
+
+data = pd.read_csv('Titanic-Dataset.csv')
+
+data['FamilySize'] = data['SibSp'] + data['Parch']
+data['IsAlone'] = (data['FamilySize'] == 0).astype(int)
+
+data['Sex'] = data['Sex'].map({'male':0,'female':1})
+
+data = pd.get_dummies(data, columns=['Embarked'], drop_first=True)
+
+mean_age = data['Age'].mean()
+median_fare = data['Fare'].median()
+
+passengers_by_class = data['Pclass'].value_counts()
+passengers_by_gender = data['Sex'].value_counts()
+passengers_by_survival = data['Survived'].value_counts()
+
+survival_rate = data['Survived'].mean()
+survival_rate_by_gender = data.groupby('Sex')['Survived'].mean()
+
+print(mean_age)
+print(median_fare)
+print(passengers_by_class)
+print(passengers_by_gender)
+print(passengers_by_survival)
+print(survival_rate)
+print(survival_rate_by_gender)
