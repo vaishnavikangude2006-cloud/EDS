@@ -1,0 +1,20 @@
+import pandas as pd
+from itertools import combinations
+from collections import Counter
+
+file_name = input()
+
+df = pd.read_csv(file_name)
+data_by_date = df.groupby('Date')['product'].apply(list)
+
+product_pair_count = Counter()
+
+for products in data_by_date:
+    for pair in combinations(sorted(products), 2):
+        product_pair_count[pair] += 1
+
+max_frequency = max(product_pair_count.values())
+most_frequent_pairs = [pair for pair,count in product_pair_count.items() if count == max_frequency]
+
+for pair in most_frequent_pairs:
+    print(f"{pair[0]} and {pair[1]}")
